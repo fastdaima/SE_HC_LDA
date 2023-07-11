@@ -1,3 +1,7 @@
+Repo Source: https://github.com/SOLAR-group/LHC-SE.git
+
+Replicating R code to Python, python implementation present in python/ folder
+
 # LDA-based Hierarchical Clustering for Story point Estimation (LHC-SE)
 Using clustering of textual features to estimate effort in agile projects. 
 
