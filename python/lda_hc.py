@@ -106,3 +106,37 @@ preds = ac_m.fit_predict(prob_df.values)
 prob_df['labels'] = preds
 
 print(prob_df.labels.value_counts())
+
+test_df = text_processing(test)
+t_texts, t_dictionary, t_corpus = return_dict_corpus(test)
+t_topics = lda_model[t_corpus[0]]
+t_topics
+def return_prob_list(probs):
+    ind_prob = {}
+
+    for (topic_no, prob) in probs[0]:
+        ind_prob[f'topic_{topic_no}'] = prob
+
+    for tn in topics_number:
+        if not ind_prob.get(tn, None): ind_prob[tn] = 0.0
+
+    return ind_prob
+
+return_prob_list(t_topics)
+
+inp = list(dict(sorted(return_prob_list(t_topics).items(), key= lambda item: int(item[0].split('_')[1]))).values())
+inps = {
+    'inp-6767': return_prob_list(t_topics)
+}
+
+inp_df = pd.DataFrame.from_dict(inps, orient='index')
+inp_df.index.name = 'issue_key'
+# ac_m.fit_predict(inp_df.values)
+inp_df.values
+prob_df['index_number'] = [i for i in range(len(prob_df))]
+src_df = prob_df.drop(['labels', 'index_number'], axis=1)
+src_df.values
+arr2 = inp_df.values[0]
+euclidean_distance = {ind: np.linalg.norm(arr1 - arr2) for ind, arr1 in enumerate(src_df.values)}
+dict(sorted(euclidean_distance.items(), key=lambda x: float(x[1]), reverse=True))
+prob_df[prob_df.index_number==1429]
