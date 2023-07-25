@@ -107,7 +107,7 @@ prob_df['labels'] = preds
 
 print(prob_df.labels.value_counts())
 
-test_df = text_processing(test)
+test_df = text_processing(test) 
 t_texts, t_dictionary, t_corpus = return_dict_corpus(test)
 t_topics = lda_model[t_corpus[0]]
 t_topics
